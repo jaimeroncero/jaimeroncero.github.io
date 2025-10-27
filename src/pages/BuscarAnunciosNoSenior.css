@@ -1,0 +1,195 @@
+/* 🔹 Barra superior con logo */
+.top-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #e6921d; /* naranja */
+  padding: 0.5rem 1.5rem;
+  border-bottom: 2px solid #4A6B5D; /* verde */
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo-navbar {
+  height: 45px;
+  cursor: pointer;
+}
+
+.nav-icons {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-icon {
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.nav-icon:hover {
+  color: #4A6B5D;
+}
+
+/* 🔹 Barra de búsqueda */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  padding: 0.8rem;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 60px;
+  z-index: 9;
+}
+
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  background: #f7f7f7;
+  border-radius: 50px;
+  padding: 0.6rem 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+.search-icon {
+  color: #4A6B5D;
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+}
+
+.search-input-wrapper input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1rem;
+  flex: 1;
+}
+
+/* 🔹 Feed tipo TikTok con tarjetas */
+.feed-container {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: calc(100vh - 140px); /* ocupa pantalla menos navbar y búsqueda */
+  padding: 1rem;
+}
+
+.feed-card {
+  scroll-snap-align: start;
+  height: calc(100vh - 180px);
+  margin: 1rem auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  max-width: 500px;
+  background: #fff;
+}
+
+.feed-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.feed-info {
+  position: relative;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 1rem;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.feed-info h2 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.feed-info .precio {
+  font-weight: bold;
+  color: #e6921d;
+}
+
+.scroll-hint {
+  position: fixed;
+  bottom: 20%;
+  left: 25%; /* 👈 más a la izquierda */
+  transform: translateX(-50%);
+  text-align: center;
+  animation: fadeOut 1s ease-in-out 4s forwards;
+  z-index: 20;
+}
+
+.scroll-hint img {
+  width: 90px; /* 👈 más grande */
+  opacity: 0.9;
+  animation: scrollMove 1.5s infinite ease-in-out;
+}
+
+.scroll-hint p {
+  color: #333;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+/* 🔹 Botones de navegación derecha */
+.nav-buttons {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 30;
+}
+
+.nav-buttons button {
+  background: #4A6B5D;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.nav-buttons button:hover {
+  background: #e6921d;
+}
+
+.nav-buttons button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* 🔹 Movimiento de la mano */
+@keyframes scrollMove {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(15px);
+  }
+}
+
+/* 🔹 Animación desaparecer */
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

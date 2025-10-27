@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mini Wallapop</title>
+</head>
+<body>
+  <h1>Publicar producto</h1>
+  <form id="itemForm" enctype="multipart/form-data">
+    <input name="title" placeholder="Título" required /><br />
+    <textarea name="description" placeholder="Descripción"></textarea><br />
+    <input type="file" name="image" /><br />
+    <button type="submit">Publicar</button>
+  </form>
+
+  <h2>Últimos productos</h2>
+  <ul id="itemsList"></ul>
+
+  <script>
+    async function cargarItems() {
+      const res = await fetch("/api/items");
+      const items = await res.json();
+      const list = document.getElementById("itemsList");
+      list.innerHTML = "";
+      items.forEach(item => {
+        list.innerHTML += `<li><strong>${item.title}</strong><br>${item.description}<br>
+        ${item.image ? `<img src="/uploads/${item.image}" width="100"/>` : ""}</li>`;
+      });
+    }
+
+    document.getElementById("itemForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const form = new FormData(e.target);
+      await fetch("/api/items", {
+        method: "POST",
+        body: form,
+      });
+      e.target.reset();
+      cargarItems();
+    });
+
+    cargarItems();
+  </script>
+</body>
+</html>
